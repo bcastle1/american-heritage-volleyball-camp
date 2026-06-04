@@ -6,9 +6,9 @@
   const defaults = {
     dates: "TBD",
     location: "American Fork, Utah",
-    athletes: "Middle school & high school",
+    athletes: "High school boys & girls",
     registrationStatus: "Interest List",
-    heroSubhead: "American Fork, Utah volleyball training for middle school and high school boys and girls.",
+    heroSubhead: "American Fork, Utah volleyball training for high school boys and girls.",
     announcement: "Train hard. Lead well. Honor always.",
     coachSummary:
       "Together, Brad and Erik Castle bring college-level playing backgrounds, semi-professional USVBA experience, and current American Heritage varsity and JV coaching leadership. Their shared approach is technical, competitive, and values-driven: strong fundamentals, smart reads, disciplined reps, and team-first leadership.",
