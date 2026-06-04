@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin | American Heritage Volleyball Camp</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <div class="admin-hero-bg" aria-hidden="true"></div>
+        <header class="admin-topbar">
+          <a class="brand" href="index.html" aria-label="Back to site">
+            <svg class="brand-mark" viewBox="0 0 80 96" aria-hidden="true">
+              <path d="M6 7h68v49c0 17-13 27-34 36C19 83 6 73 6 56V7Z"></path>
+              <path d="M14 15h52v37c0 13-10 21-26 28-16-7-26-15-26-28V15Z"></path>
+              <circle cx="40" cy="42" r="15"></circle>
+              <path d="M27 42h26M40 27c-5 8-5 22 0 30M40 27c5 8 5 22 0 30M31 31c7 5 11 5 18 0M31 53c7-5 11-5 18 0"></path>
+              <path d="M22 22h7M51 22h7M20 64h9M51 64h9"></path>
+            </svg>
+            <span>
+              <strong>American Heritage</strong>
+              <small>Admin</small>
+            </span>
+          </a>
+          <a class="site-link" href="index.html">View Site</a>
+        </header>
+
+        <div class="admin-hero-copy">
+          <h1>Camp Admin</h1>
+          <p>Manage camp details, coach copy, and registration messaging.</p>
+        </div>
+      </section>
+
+      <section class="admin-card auth-card" data-admin-lock>
+        <div>
+          <h2>Enter Admin Code</h2>
+          <p>Use the camp admin code to open the dashboard.</p>
+        </div>
+        <form class="auth-form" data-auth-form>
+          <label>
+            Access code
+            <input name="code" type="password" autocomplete="current-password" required>
+          </label>
+          <button type="submit">Unlock</button>
+          <p class="status" data-auth-status role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="admin-dashboard is-hidden" data-admin-dashboard>
+        <div class="dashboard-head">
+          <div>
+            <h2>Dashboard</h2>
+            <p>Draft changes save in this browser and can be previewed on the site from this same device.</p>
+          </div>
+          <div class="dashboard-actions">
+            <a href="index.html">Preview Site</a>
+            <button type="button" data-lock-admin>Lock</button>
+          </div>
+        </div>
+
+        <div class="metric-grid" aria-label="Camp status">
+          <article>
+            <span>Dates</span>
+            <strong data-preview="dates">TBD</strong>
+          </article>
+          <article>
+            <span>Location</span>
+            <strong data-preview="location">American Fork, Utah</strong>
+          </article>
+          <article>
+            <span>Status</span>
+            <strong data-preview="registrationStatus">Interest List</strong>
+          </article>
+        </div>
+
+        <form class="editor-grid" data-admin-form>
+          <section class="editor-panel">
+            <h3>Camp Details</h3>
+            <label>
+              Dates
+              <input name="dates" value="TBD">
+            </label>
+            <label>
+              Location
+              <input name="location" value="American Fork, Utah">
+            </label>
+            <label>
+              Athlete group
+              <input name="athletes" value="Middle school &amp; high school">
+            </label>
+            <label>
+              Registration status
+              <input name="registrationStatus" value="Interest List">
+            </label>
+          </section>
+
+          <section class="editor-panel">
+            <h3>Site Copy</h3>
+            <label>
+              Hero subheading
+              <textarea name="heroSubhead" rows="3">American Fork, Utah volleyball training for middle school and high school boys and girls.</textarea>
+            </label>
+            <label>
+              Announcement line
+              <input name="announcement" value="Train hard. Lead well. Honor always.">
+            </label>
+            <label>
+              Combined coach summary
+              <textarea name="coachSummary" rows="6">Together, Brad and Erik Castle bring college-level playing backgrounds, semi-professional USVBA experience, and current American Heritage varsity and JV coaching leadership. Their shared approach is technical, competitive, and values-driven: strong fundamentals, smart reads, disciplined reps, and team-first leadership.</textarea>
+            </label>
+          </section>
+
+          <section class="editor-panel editor-panel-wide">
+            <h3>Update Summary</h3>
+            <label>
+              Notes for the next site update
+              <textarea name="notes" rows="4" placeholder="Add pricing, final dates, session times, registration link, or coach contact info."></textarea>
+            </label>
+            <div class="form-actions">
+              <button type="submit">Save Draft</button>
+              <button type="button" class="button-secondary" data-copy-summary>Copy Summary</button>
+              <button type="button" class="button-light" data-reset-draft>Reset</button>
+            </div>
+            <p class="status" data-admin-status role="status" aria-live="polite"></p>
+          </section>
+        </form>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

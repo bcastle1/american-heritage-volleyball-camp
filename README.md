@@ -9,6 +9,7 @@ Static website for the American Heritage Volleyball Camp in American Fork, Utah.
 - `script.js` - mobile menu and contact email draft behavior
 - `assets/` - project-owned images and favicon
 - `flyer.html` and `flyer.css` - print/share flyer matching the website theme
+- `admin.html`, `admin.css`, and `admin.js` - static admin dashboard opened from the bottom-right Admin link
 - `american-heritage-volleyball-camp-flyer.png` - rendered flyer image for sharing
 - `.github/workflows/pages.yml` - GitHub Pages deployment workflow
 

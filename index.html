@@ -17,7 +17,7 @@
     <meta property="og:image" content="assets/hero-volleyball-camp.png">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="assets/hero-volleyball-camp.png" as="image">
-    <link rel="stylesheet" href="styles.css?v=20260604-premium">
+    <link rel="stylesheet" href="styles.css?v=20260604-admin">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -60,7 +60,7 @@
         <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-content">
           <h1>American Heritage Volleyball Camp</h1>
-          <p>American Fork, Utah volleyball training for middle school and high school boys and girls.</p>
+          <p data-admin-field="heroSubhead">American Fork, Utah volleyball training for middle school and high school boys and girls.</p>
           <div class="hero-actions" aria-label="Primary">
             <a class="button button-red" href="#dates">Camp Details</a>
             <a class="button button-blue" href="#coaches">Meet the Coaches</a>
@@ -83,7 +83,7 @@
               communication, respect for teammates, and the American Heritage values that make strong players
               and stronger people.
             </p>
-            <p class="callout-line">Train hard. Lead well. Honor always.</p>
+            <p class="callout-line" data-admin-field="announcement">Train hard. Lead well. Honor always.</p>
           </div>
           <div class="image-rail" aria-label="Volleyball training photos">
             <img src="assets/passing-training.png" alt="Youth volleyball athletes practicing serve receive">
@@ -213,7 +213,7 @@
             <div class="coach-list coach-list-single">
               <article>
                 <h3>Combined Coaching Experience</h3>
-                <p>
+                <p data-admin-field="coachSummary">
                   Together, Brad and Erik Castle bring college-level playing backgrounds, semi-professional USVBA
                   experience, and current American Heritage varsity and JV coaching leadership. Their shared approach
                   is technical, competitive, and values-driven: strong fundamentals, smart reads, disciplined reps,
@@ -268,15 +268,15 @@
           <div class="detail-board">
             <article>
               <span>Dates</span>
-              <strong>TBD</strong>
+                <strong data-admin-field="dates">TBD</strong>
             </article>
             <article>
               <span>Location</span>
-              <strong>American Fork, Utah</strong>
+                <strong data-admin-field="location">American Fork, Utah</strong>
             </article>
             <article>
               <span>Athletes</span>
-              <strong>Middle school &amp; high school</strong>
+                <strong data-admin-field="athletes">Middle school &amp; high school</strong>
             </article>
             <article>
               <span>Skill Level</span>
@@ -386,6 +386,8 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20260604-premium"></script>
+    <a class="admin-corner-link" href="admin.html" aria-label="Open admin page">Admin</a>
+
+    <script src="script.js?v=20260604-admin"></script>
   </body>
 </html>

@@ -4,6 +4,7 @@
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const form = document.querySelector("[data-interest-form]");
   const status = document.querySelector("[data-form-status]");
+  const adminDraftKey = "ahvcAdminDraft";
 
   const updateHeader = () => {
     header.classList.toggle("is-scrolled", window.scrollY > 16);
@@ -115,4 +116,18 @@
 
     window.location.href = mailto;
   });
+
+  try {
+    const draft = JSON.parse(localStorage.getItem(adminDraftKey) || "null");
+    if (draft && typeof draft === "object") {
+      document.querySelectorAll("[data-admin-field]").forEach((element) => {
+        const value = draft[element.dataset.adminField];
+        if (typeof value === "string" && value.trim()) {
+          element.textContent = value.trim();
+        }
+      });
+    }
+  } catch (error) {
+    localStorage.removeItem(adminDraftKey);
+  }
 })();
