@@ -31,7 +31,7 @@
 
         <div class="admin-hero-copy">
           <h1>Camp Admin</h1>
-          <p>Manage camp details, coach copy, and registration messaging.</p>
+          <p>Manage camp details, registrations, Venmo payments, and payment settings.</p>
         </div>
       </section>
 
@@ -54,80 +54,211 @@
         <div class="dashboard-head">
           <div>
             <h2>Dashboard</h2>
-            <p>Draft changes save in this browser and can be previewed on the site from this same device.</p>
+            <p>CRM records, payments, and draft site changes save in this browser.</p>
           </div>
           <div class="dashboard-actions">
             <a href="index.html">Preview Site</a>
+            <button type="button" data-export-csv>Export CSV</button>
+            <button type="button" data-export-backup>Backup CRM</button>
+            <label class="file-action">
+              Restore CRM
+              <input type="file" accept="application/json,.json" data-restore-backup>
+            </label>
             <button type="button" data-lock-admin>Lock</button>
           </div>
         </div>
 
         <div class="metric-grid" aria-label="Camp status">
           <article>
-            <span>Dates</span>
-            <strong data-preview="dates">TBD</strong>
+            <span>Registrations</span>
+            <strong data-metric="registrations">0</strong>
           </article>
           <article>
-            <span>Location</span>
-            <strong data-preview="location">American Fork, Utah</strong>
+            <span>Paid</span>
+            <strong data-metric="paid">0</strong>
           </article>
           <article>
-            <span>Status</span>
-            <strong data-preview="registrationStatus">Interest List</strong>
+            <span>Pending</span>
+            <strong data-metric="pending">0</strong>
+          </article>
+          <article>
+            <span>Revenue</span>
+            <strong data-metric="revenue">$0.00</strong>
           </article>
         </div>
 
-        <form class="editor-grid" data-admin-form>
-          <section class="editor-panel">
-            <h3>Camp Details</h3>
-            <label>
-              Dates
-              <input name="dates" value="TBD">
-            </label>
-            <label>
-              Location
-              <input name="location" value="American Fork, Utah">
-            </label>
-            <label>
-              Athlete group
-              <input name="athletes" value="High school boys &amp; girls">
-            </label>
-            <label>
-              Registration status
-              <input name="registrationStatus" value="Interest List">
-            </label>
-          </section>
+        <div class="admin-tabs" aria-label="Admin tools">
+          <button class="tab-button active" type="button" data-admin-tab="site">Site Copy</button>
+          <button class="tab-button" type="button" data-admin-tab="registrations">Registrations</button>
+          <button class="tab-button" type="button" data-admin-tab="payments">Payments</button>
+          <button class="tab-button" type="button" data-admin-tab="settings">Payment Settings</button>
+        </div>
 
-          <section class="editor-panel">
-            <h3>Site Copy</h3>
-            <label>
-              Hero subheading
-              <textarea name="heroSubhead" rows="3">American Fork, Utah volleyball training for high school boys and girls.</textarea>
-            </label>
-            <label>
-              Announcement line
-              <input name="announcement" value="Train hard. Lead well. Honor always.">
-            </label>
-            <label>
-              Combined coach summary
-              <textarea name="coachSummary" rows="6">Together, Brad and Erik Castle bring college-level playing backgrounds, semi-professional USVBA experience, and current American Heritage varsity and JV coaching leadership. Their shared approach is technical, competitive, and values-driven: strong fundamentals, smart reads, disciplined reps, and team-first leadership.</textarea>
-            </label>
-          </section>
+        <section class="admin-panel active" data-panel="site">
+          <form class="editor-grid" data-admin-form>
+            <section class="editor-panel">
+              <h3>Camp Details</h3>
+              <label>
+                Dates
+                <input name="dates" value="TBD">
+              </label>
+              <label>
+                Location
+                <input name="location" value="American Fork, Utah">
+              </label>
+              <label>
+                Athlete group
+                <input name="athletes" value="High school boys &amp; girls">
+              </label>
+              <label>
+                Registration status
+                <input name="registrationStatus" value="Registration / Venmo Checkout">
+              </label>
+            </section>
 
-          <section class="editor-panel editor-panel-wide">
-            <h3>Update Summary</h3>
+            <section class="editor-panel">
+              <h3>Site Copy</h3>
+              <label>
+                Hero subheading
+                <textarea name="heroSubhead" rows="3">American Fork, Utah volleyball training for high school boys and girls.</textarea>
+              </label>
+              <label>
+                Announcement line
+                <input name="announcement" value="Train hard. Lead well. Honor always.">
+              </label>
+              <label>
+                Combined coach summary
+                <textarea name="coachSummary" rows="6">Together, Brad and Erik Castle bring college-level playing backgrounds, semi-professional USVBA experience, and current American Heritage varsity and JV coaching leadership. Their shared approach is technical, competitive, and values-driven: strong fundamentals, smart reads, disciplined reps, and team-first leadership.</textarea>
+              </label>
+            </section>
+
+            <section class="editor-panel editor-panel-wide">
+              <h3>Update Summary</h3>
+              <label>
+                Notes for the next site update
+                <textarea name="notes" rows="4" placeholder="Add pricing, final dates, session times, registration link, or coach contact info."></textarea>
+              </label>
+              <div class="form-actions">
+                <button type="submit">Save Draft</button>
+                <button type="button" class="button-secondary" data-copy-summary>Copy Summary</button>
+                <button type="button" class="button-light" data-reset-draft>Reset</button>
+              </div>
+              <p class="status" data-admin-status role="status" aria-live="polite"></p>
+            </section>
+          </form>
+        </section>
+
+        <section class="admin-panel" data-panel="registrations">
+          <div class="toolbar">
             <label>
-              Notes for the next site update
-              <textarea name="notes" rows="4" placeholder="Add pricing, final dates, session times, registration link, or coach contact info."></textarea>
+              Search
+              <input data-registration-search placeholder="Name, email, phone, grade">
+            </label>
+            <label>
+              Payment
+              <select data-payment-filter>
+                <option value="all">All payment states</option>
+                <option value="paid">Paid</option>
+                <option value="pending">Pending</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="admin-grid">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Athlete</th>
+                    <th>Grade</th>
+                    <th>Guardian</th>
+                    <th>Contact</th>
+                    <th>Payment</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-participants-table></tbody>
+              </table>
+            </div>
+            <aside class="participant-detail" data-participant-detail>
+              <p>Select a registration to see details.</p>
+            </aside>
+          </div>
+
+          <form class="editor-panel manual-entry" data-manual-registration>
+            <input type="hidden" name="participantId">
+            <h3>Add or Edit Registration</h3>
+            <div class="form-grid two">
+              <label>Athlete name<input name="athlete" required></label>
+              <label>Grade
+                <select name="grade" required>
+                  <option value="">Select</option>
+                  <option>9th</option>
+                  <option>10th</option>
+                  <option>11th</option>
+                  <option>12th</option>
+                </select>
+              </label>
+              <label>Guardian name<input name="guardian" required></label>
+              <label>Guardian email<input name="email" type="email" required></label>
+              <label>Guardian phone<input name="phone" type="tel"></label>
+              <label>Experience<input name="experience" placeholder="Beginner, club, varsity, etc."></label>
+              <label>Payment status
+                <select name="paymentStatus">
+                  <option value="pending">Pending</option>
+                  <option value="paid">Paid</option>
+                </select>
+              </label>
+              <label>Payment amount<input name="paymentAmount" type="number" min="0" step="0.01"></label>
+              <label class="full-field">Payment memo<input name="paymentMemo"></label>
+              <label class="full-field">Notes<textarea name="message" rows="3"></textarea></label>
+            </div>
+            <div class="form-actions">
+              <button type="submit">Save Registration</button>
+              <button type="button" class="button-light" data-clear-manual-form>Clear</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="admin-panel" data-panel="payments">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Athlete</th>
+                  <th>Memo</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody data-payments-table></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="admin-panel" data-panel="settings">
+          <form class="editor-panel settings-panel" data-settings-form>
+            <h3>Contact and Payment Settings</h3>
+            <label>
+              Venmo handle
+              <input name="venmoHandle" value="bcastle1">
+            </label>
+            <label>
+              Camp fee
+              <input name="campFee" value="TBD" placeholder="TBD or 75">
+            </label>
+            <label>
+              Contact email
+              <input name="contactEmail" type="email" placeholder="coach@example.com">
             </label>
             <div class="form-actions">
-              <button type="submit">Save Draft</button>
-              <button type="button" class="button-secondary" data-copy-summary>Copy Summary</button>
-              <button type="button" class="button-light" data-reset-draft>Reset</button>
+              <button type="submit">Save Payment Settings</button>
             </div>
-            <p class="status" data-admin-status role="status" aria-live="polite"></p>
-          </section>
-        </form>
+            <p class="status" data-settings-status role="status" aria-live="polite"></p>
+          </form>
+        </section>
       </section>
     </main>
 

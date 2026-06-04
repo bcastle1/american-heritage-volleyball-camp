@@ -49,6 +49,7 @@
         <a href="#coaches">Coaches</a>
         <a href="#training">Training</a>
         <a href="#dates">Dates</a>
+        <a href="#payment">Payment</a>
         <a href="#contact">Contact</a>
         <a class="nav-cta" href="#contact">Join Now</a>
       </nav>
@@ -187,6 +188,10 @@
             <span>Camp Details</span>
             <strong>Dates TBD</strong>
           </a>
+          <a class="quick-card" href="#payment">
+            <span>Venmo Checkout</span>
+            <strong>Register, memo, and pay</strong>
+          </a>
           <a class="quick-card" href="#training">
             <span>Training Notes</span>
             <strong>Technique, reps, and game play</strong>
@@ -295,18 +300,51 @@
         </div>
       </section>
 
+      <section class="payment-info band-dark" id="payment">
+        <div class="container payment-grid">
+          <div>
+            <h2>Venmo Checkout</h2>
+            <p>
+              Register below and the app will create a camp payment memo, open a Venmo checkout link,
+              and save the athlete record for admin review.
+            </p>
+            <p class="payment-note">
+              Payments are tracked in the camp admin dashboard and can be manually marked paid after Venmo is verified.
+            </p>
+          </div>
+          <div class="payment-board">
+            <article>
+              <span>Camp Fee</span>
+              <strong data-public-setting="campFee">TBD</strong>
+            </article>
+            <article>
+              <span>Venmo</span>
+              <strong>@<span data-public-setting="venmoHandle">bcastle1</span></strong>
+            </article>
+            <article>
+              <span>Memo</span>
+              <strong>AH Volleyball + athlete name</strong>
+            </article>
+            <a class="button button-red" data-venmo-profile href="https://venmo.com/bcastle1" target="_blank" rel="noreferrer">
+              Pay with Venmo
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section class="contact" id="contact">
         <div class="container contact-grid">
           <div class="contact-copy">
-            <h2>Join the Camp Interest List</h2>
+            <h2>Register for Camp</h2>
             <p>
-              Send your athlete's information and questions so the coaches can follow up when dates, sessions,
-              and registration details are finalized.
+              Send your athlete's information, create the Venmo checkout memo, and keep the registration
+              ready for coach/admin review when final dates and sessions are set.
             </p>
             <div class="contact-points" aria-label="Camp eligibility">
               <span>All schools welcome</span>
               <span>Boys and girls</span>
               <span>High school boys and girls</span>
+              <span>Venmo payment tracking</span>
               <span>Dates TBD</span>
             </div>
           </div>
@@ -317,8 +355,22 @@
               <input name="athlete" autocomplete="name" required>
             </label>
             <label>
-              Parent or guardian email
-              <input name="email" type="email" autocomplete="email" required>
+              Parent or guardian name
+              <input name="guardian" autocomplete="name" required>
+            </label>
+            <div class="form-row">
+              <label>
+                Parent or guardian email
+                <input name="email" type="email" autocomplete="email" required>
+              </label>
+              <label>
+                Parent or guardian phone
+                <input name="phone" type="tel" autocomplete="tel">
+              </label>
+            </div>
+            <label>
+              Athlete email <span class="field-hint">(optional)</span>
+              <input name="athleteEmail" type="email" autocomplete="email">
             </label>
             <div class="form-row">
               <label>
@@ -346,12 +398,35 @@
               Questions or goals
               <textarea name="message" rows="4" placeholder="Tell us what your athlete wants to improve."></textarea>
             </label>
-            <button class="button button-red form-submit" type="submit">Create Email</button>
+            <button class="button button-red form-submit" type="submit">Register and Open Venmo</button>
+            <p class="form-note">Venmo confirmation is still manually reviewed by the camp admin team.</p>
             <p class="form-status" role="status" aria-live="polite" data-form-status></p>
           </form>
         </div>
       </section>
     </main>
+
+    <dialog class="payment-modal" data-payment-modal>
+      <form method="dialog" class="payment-card">
+        <button class="modal-close" type="button" data-close-payment aria-label="Close payment checkout">x</button>
+        <div class="section-heading tight-heading">
+          <h2 data-payment-title>Complete Venmo payment</h2>
+          <p>Use the memo below so the payment can be matched to the registration.</p>
+        </div>
+        <div class="receipt-card" data-payment-summary></div>
+        <div class="modal-actions">
+          <a class="button button-red" data-venmo-pay-link href="https://venmo.com/bcastle1" target="_blank" rel="noreferrer">
+            Pay with Venmo
+          </a>
+          <button class="button button-blue" type="button" data-record-payment>
+            Record Payment
+          </button>
+        </div>
+        <p class="form-note">
+          Admin should verify Venmo before treating a payment as final.
+        </p>
+      </form>
+    </dialog>
 
     <footer class="site-footer">
       <div class="container footer-grid">
@@ -378,6 +453,7 @@
           <a href="#coaches">Coaches</a>
           <a href="#training">Training</a>
           <a href="#dates">Dates</a>
+          <a href="#payment">Payment</a>
           <a href="#contact">Join Now</a>
         </div>
       </div>
