@@ -27,6 +27,8 @@ body {
   background:
     linear-gradient(135deg, rgba(7, 26, 53, 0.12), rgba(232, 15, 25, 0.08)),
     #d9dde5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .flyer-sheet {
@@ -408,6 +410,49 @@ body {
   font-weight: 1000;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* Premium pass to match the app: refined weights and softer surfaces. */
+.brand-lockup strong,
+.hero-copy h1 {
+  font-weight: 820;
+}
+
+.brand-lockup span,
+.location-chip,
+.dates-card span,
+.promise-card span,
+.training-grid span,
+.flyer-footer strong,
+.flyer-footer a {
+  font-weight: 740;
+}
+
+.hero-copy p,
+.promise-card p {
+  font-weight: 650;
+}
+
+.dates-card strong,
+.section-title h2,
+.coach-strip h2 {
+  font-weight: 780;
+}
+
+.training-grid h3 {
+  font-weight: 700;
+}
+
+.training-grid article {
+  background: rgba(248, 250, 252, 0.92);
+  box-shadow: 0 12px 30px rgba(7, 18, 37, 0.06);
+}
+
+.dates-card,
+.promise-card,
+.coach-strip,
+.flyer-footer a {
+  box-shadow: 0 16px 40px rgba(2, 11, 24, 0.18);
 }
 
 @page {
