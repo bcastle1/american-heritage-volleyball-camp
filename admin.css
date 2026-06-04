@@ -619,6 +619,11 @@ td button,
   display: none !important;
 }
 
+/* Keep all admin wording regular weight. */
+:where(body, body *, strong, b, button, input, select, textarea) {
+  font-weight: 400 !important;
+}
+
 @media (max-width: 820px) {
   .auth-card,
   .dashboard-head,

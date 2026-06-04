@@ -1449,6 +1449,11 @@ blockquote {
   }
 }
 
+/* Keep all site wording regular weight. */
+:where(body, body *, strong, b, button, input, select, textarea) {
+  font-weight: 400 !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
