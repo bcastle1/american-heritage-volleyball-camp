@@ -128,7 +128,14 @@ American Heritage Volleyball Camp
 
   const escapeAttr = escapeHtml;
 
-  const getAdminCode = () => localStorage.getItem(adminCodeKey) || defaultCode;
+  const getAdminCode = () => {
+    const savedCode = localStorage.getItem(adminCodeKey);
+    if (savedCode === "Patriot") {
+      localStorage.setItem(adminCodeKey, defaultCode);
+      return defaultCode;
+    }
+    return savedCode || defaultCode;
+  };
 
   const makeId = (prefix) => (
     `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
