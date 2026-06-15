@@ -1,5 +1,5 @@
 (function () {
-  const defaultCode = "Patriot";
+  const defaultCode = "patriot";
   const adminCodeKey = "ahvcAdminCode.v1";
   const storageKey = "ahvcAdminDraft";
   const crmKey = "ahvcCampCrm.v1";
