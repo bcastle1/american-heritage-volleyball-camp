@@ -31,7 +31,7 @@
 
         <div class="admin-hero-copy">
           <h1>Camp Admin</h1>
-          <p>Manage camp details, registrations, Venmo payments, and payment settings.</p>
+          <p>Manage camp details, registrations, Venmo payments, directory outreach, and email runs.</p>
         </div>
       </section>
 
@@ -54,7 +54,7 @@
         <div class="dashboard-head">
           <div>
             <h2>Dashboard</h2>
-            <p>CRM records, payments, and draft site changes save in this browser.</p>
+            <p>CRM records, payments, directory outreach, and draft site changes save in this browser.</p>
           </div>
           <div class="dashboard-actions">
             <a href="index.html">Preview Site</a>
@@ -85,13 +85,31 @@
             <span>Revenue</span>
             <strong data-metric="revenue">$0.00</strong>
           </article>
+          <article>
+            <span>Directory</span>
+            <strong data-metric="directory">0</strong>
+          </article>
+          <article>
+            <span>Selected</span>
+            <strong data-metric="selected">0</strong>
+          </article>
+          <article>
+            <span>Email History</span>
+            <strong data-metric="emails">0</strong>
+          </article>
+          <article>
+            <span>Last Run</span>
+            <strong data-metric="progress">0%</strong>
+          </article>
         </div>
 
         <div class="admin-tabs" aria-label="Admin tools">
           <button class="tab-button active" type="button" data-admin-tab="site">Site Copy</button>
           <button class="tab-button" type="button" data-admin-tab="registrations">Registrations</button>
           <button class="tab-button" type="button" data-admin-tab="payments">Payments</button>
-          <button class="tab-button" type="button" data-admin-tab="settings">Payment Settings</button>
+          <button class="tab-button" type="button" data-admin-tab="email">Email Runs</button>
+          <button class="tab-button" type="button" data-admin-tab="directory">Directory</button>
+          <button class="tab-button" type="button" data-admin-tab="settings">Settings</button>
         </div>
 
         <section class="admin-panel active" data-panel="site">
@@ -238,23 +256,168 @@
           </div>
         </section>
 
+        <section class="admin-panel" data-panel="email">
+          <div class="email-grid">
+            <section class="editor-panel composer-panel">
+              <div class="panel-heading-row">
+                <div>
+                  <h3>Email Draft</h3>
+                  <p class="panel-note">Build camp outreach from a selected directory contact, registration, or manual email.</p>
+                </div>
+                <span class="status-pill neutral" data-email-selected-meta>Select a contact</span>
+              </div>
+              <div class="selected-strip">
+                <strong data-email-selected-name>Select a directory contact</strong>
+                <span data-email-selected-detail>Choose from the directory tab or enter a manual recipient.</span>
+              </div>
+              <div class="form-grid two">
+                <label>To<input data-email-to></label>
+                <label>CC<input data-email-cc placeholder="Optional CC list"></label>
+              </div>
+              <label>Subject<input data-email-subject></label>
+              <label>
+                Email template
+                <div class="template-editor" contenteditable="true" spellcheck="true" data-email-template aria-label="Email template"></div>
+              </label>
+              <div class="placeholder-help" aria-label="Available placeholders">
+                <span>{{first_name}}</span>
+                <span>{{last_name}}</span>
+                <span>{{name}}</span>
+                <span>{{group}}</span>
+                <span>{{camp_dates}}</span>
+                <span>{{camp_location}}</span>
+                <span>{{camp_fee}}</span>
+                <span>{{venmo_handle}}</span>
+                <span>{{registration_link}}</span>
+                <span>{{from_email}}</span>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="button-secondary" data-save-template>Save Template</button>
+                <button type="button" class="button-light" data-reset-template>Reset Template</button>
+              </div>
+              <label>Email preview<textarea rows="9" readonly data-email-body></textarea></label>
+              <div class="form-actions">
+                <button type="button" data-copy-email>Copy Draft</button>
+                <button type="button" class="button-secondary" data-open-email>Open Draft</button>
+                <button type="button" class="button-light" data-mark-email-sent>Mark Sent</button>
+              </div>
+              <p class="status" data-email-status role="status" aria-live="polite"></p>
+            </section>
+
+            <section class="editor-panel run-panel">
+              <h3>Scheduled Runs</h3>
+              <div class="form-grid two">
+                <label>Frequency
+                  <select data-schedule-frequency>
+                    <option value="manual">Manual run only</option>
+                    <option value="weekly">Once a week</option>
+                    <option value="biweekly">Every two weeks</option>
+                    <option value="monthly">Monthly</option>
+                  </select>
+                </label>
+                <label>Day
+                  <select data-schedule-day>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                  </select>
+                </label>
+                <label>Time<input data-schedule-time type="time" value="09:00"></label>
+                <label>Delay between emails, seconds<input data-schedule-delay type="number" min="1" value="4"></label>
+              </div>
+              <label>Manual email<input data-manual-email type="email" placeholder="optional@email.com"></label>
+              <label class="check-row"><input data-open-drafts-during-run type="checkbox">Open mail drafts during run</label>
+              <div class="form-actions">
+                <button type="button" data-start-run>Start Send Run</button>
+                <button type="button" class="button-secondary" data-save-schedule>Save Auto-Send Schedule</button>
+              </div>
+              <div class="progress-panel" data-progress-panel hidden>
+                <div class="progress-meta"><span data-progress-text>0%</span><span data-progress-count>0 of 0</span></div>
+                <div class="progress-track"><span data-progress-bar></span></div>
+              </div>
+              <div class="form-actions small-actions">
+                <button type="button" class="button-light" data-toggle-progress>View Progress</button>
+                <button type="button" class="button-light" data-toggle-log>View Run Log</button>
+              </div>
+              <div class="run-log" data-run-log hidden></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-panel" data-panel="directory">
+          <div class="toolbar directory-toolbar">
+            <label>
+              Search directory
+              <input data-directory-search placeholder="Name, email, phone, notes, address">
+            </label>
+            <label>
+              Worksheet
+              <select data-directory-group>
+                <option value="">All worksheets</option>
+                <option value="ahs">AHS Families</option>
+                <option value="staff">AHS Staff</option>
+                <option value="stake">Stake Directory</option>
+                <option value="review">Stake Review Needed</option>
+              </select>
+            </label>
+            <div class="form-actions toolbar-actions">
+              <button type="button" class="button-secondary" data-select-visible>Select Visible</button>
+              <button type="button" class="button-light" data-clear-selected>Clear Selected</button>
+              <button type="button" data-download-directory>Download CSV</button>
+            </div>
+          </div>
+          <div class="table-summary" data-directory-summary>Showing 0 contacts.</div>
+          <div class="admin-grid directory-grid">
+            <div class="directory-list" data-directory-list></div>
+            <aside class="participant-detail history-detail" data-email-history>
+              <p>Select History on a directory contact to review outreach tracking.</p>
+            </aside>
+          </div>
+        </section>
+
         <section class="admin-panel" data-panel="settings">
           <form class="editor-panel settings-panel" data-settings-form>
-            <h3>Contact and Payment Settings</h3>
-            <label>
-              Venmo handle
-              <input name="venmoHandle" value="bcastle1">
-            </label>
-            <label>
-              Camp fee
-              <input name="campFee" value="TBD" placeholder="TBD or 75">
-            </label>
-            <label>
-              Contact email
-              <input name="contactEmail" type="email" placeholder="coach@example.com">
-            </label>
+            <h3>Contact, Payment, and Email Settings</h3>
+            <div class="form-grid two">
+              <label>
+                Venmo handle
+                <input name="venmoHandle" value="bcastle1">
+              </label>
+              <label>
+                Camp fee
+                <input name="campFee" value="TBD" placeholder="TBD or 75">
+              </label>
+              <label>
+                Contact email
+                <input name="contactEmail" type="email" placeholder="coach@example.com">
+              </label>
+              <label>
+                Send from email
+                <input name="fromEmail" type="email" placeholder="coach@example.com">
+              </label>
+              <label>
+                Email forwards to
+                <input name="forwardEmail" type="email" placeholder="coach@example.com">
+              </label>
+              <label>
+                Default CC
+                <input name="ccEmail" placeholder="Optional CC list">
+              </label>
+              <label>
+                Change admin code
+                <input name="adminCode" type="password" placeholder="New admin code">
+              </label>
+              <label>
+                Confirm admin code
+                <input name="adminCodeConfirm" type="password" placeholder="Repeat new code">
+              </label>
+            </div>
             <div class="form-actions">
-              <button type="submit">Save Payment Settings</button>
+              <button type="submit">Save Settings</button>
             </div>
             <p class="status" data-settings-status role="status" aria-live="polite"></p>
           </form>
@@ -262,6 +425,7 @@
       </section>
     </main>
 
+    <script src="directory-data.js?v=20260615-workbook"></script>
     <script src="admin.js"></script>
   </body>
 </html>
